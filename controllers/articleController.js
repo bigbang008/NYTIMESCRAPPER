@@ -10,12 +10,10 @@ module.exports = {
 
     create: (req, res) => {
         db.Article.create({
+                nyt_id: req.body.nyt_id,
                 headline: req.body.headline,
-                byline: req.body.byline,
                 pub_date: req.body.pub_date,
-                url: req.body.url,
-                snippet: req.body.snippet,
-                nyt_id: req.body.nyt_id
+                url: req.body.url
             })
             .then(response => res.json(response))
             .catch(err =>

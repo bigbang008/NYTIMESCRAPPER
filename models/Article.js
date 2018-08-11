@@ -13,17 +13,9 @@ const Article = new Schema({
         type: String,
         required: true,
     },
-    byline: {
-        type: String,
-        required: true
-    },
     pub_date: {
         type: String,
         required: true
-    },
-    snippet: {
-        type: String,
-        default: "No snippet available"
     },
     url: {
         type: String,
