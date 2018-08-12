@@ -13,7 +13,8 @@ module.exports = {
                 nyt_id: req.body.nyt_id,
                 headline: req.body.headline,
                 pub_date: req.body.pub_date,
-                url: req.body.url
+                url: req.body.url,
+                snippet: req.body.snippet
             })
             .then(response => res.json(response))
             .catch(err =>

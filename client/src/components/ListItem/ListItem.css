@@ -1,0 +1,10 @@
+.listParentDiv {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.list-group-item {
+    border: 2px solid black;
+    padding: 10px;
+}

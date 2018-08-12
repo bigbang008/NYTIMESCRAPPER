@@ -1,0 +1,11 @@
+.wrapper {
+    width: 980px;
+    margin: 0 auto;
+    margin-bottom: 50px; 
+    text-align: center;
+}
+
+.header {
+    background: darkorange;
+    color: aliceblue;
+}

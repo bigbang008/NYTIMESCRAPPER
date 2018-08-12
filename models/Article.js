@@ -20,6 +20,10 @@ const Article = new Schema({
     url: {
         type: String,
         required: true
+    },
+    snippet: {
+        type: String,
+        default: "Not Available"
     }
 });
 
