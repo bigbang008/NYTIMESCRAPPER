@@ -24,7 +24,7 @@
   "bugs": {
     "url": "https://github.com/bigbang008/NYTIMESCRAPPER/issues"
   },
-  "homepage": "https://github.com/bigbang008/NYTIMESCRAPPER#readme",
+  "homepage": "https://github.com/bigbang008/NYTIMESCRAPPER",
   "dependencies": {
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
