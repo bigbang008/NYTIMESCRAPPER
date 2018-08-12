@@ -26,10 +26,7 @@ class Home extends Component {
     getSaved = () => {
         console.log("getSaved method")
         API.getSavedArticles().then(response => {
-            console.log("response to getSavedArticles: ", response);
-            this.setState({
-                savedArticles: response.data
-            });
+            this.setState({ savedArticles: response.data });
         })
     };
 
@@ -53,26 +50,20 @@ class Home extends Component {
     };
 
 
-    //Called when user clicks Save button
+    // Save button
     handleArticleSave = event => {
         event.preventDefault();
         const clickedArticle = (this.state.results.filter(element => element._id === event.target.id)[0]);//Locates the article from the results array with the ID matching the button clicked
 
-        API.saveArticle(clickedArticle).then(res => {
-            this.getSaved(); 
-            this.savedTop.scrollIntoView({ behavior: "smooth", block: "center"}); //Scolls down to the savedTop reference in the Saved panel
-
-        })
+        API.saveArticle(clickedArticle).then(res => {this.getSaved();})
     };
                 
 
-    //Called when user clicks Delete button
+    //Delete button
     handleArticleDelete = (event) => {
         event.preventDefault();
-        const clickedArticle = this.state.savedArticles.filter(element => element._id = event.target.id)[0]; //Locates the article from the savedArticle array with the ID matching the button clicked
-        API.deleteArticle(clickedArticle).then(response => {
-            this.getSaved(); 
-        })
+        const clickedArticle = this.state.savedArticles.filter(element => element._id = event.target.id)[0];
+        API.deleteArticle(clickedArticle).then(response => {this.getSaved();})
     };
 
     render() {
@@ -89,7 +80,7 @@ class Home extends Component {
                 <div className="wrapper">
                     {this.state.results.length ? (
                         <List>
-                            {this.state.results.map(result => ( //For each article in the result array, create a list item with a div w/ article info, and a save button with article ID
+                            {this.state.results.map(result => (
                                 <ListItem   key={result._id}
                                             headline={result.headline.main}
                                             pub_date={result.pub_date} 
@@ -108,14 +99,14 @@ class Home extends Component {
                 <div className="wrapper">
                     {this.state.savedArticles.length ? (
                         <List>
-                            {this.state.savedArticles.slice(0).reverse().map(article => ( //For each article in the savedArticles array, create a list item (reverse order) with a div w/ article info, and a delete button with article ID
+                            {this.state.savedArticles.map(article => (
                                 <ListItem   key={article._id}
                                             headline={article.headline.main}
                                             pub_date={article.pub_date} 
                                             snippet={article.snippet} 
                                             url={article.web_url} 
                                 > 
-                                    <button id={article._id} className="btn deleteBtn" onClick={this.handleArticleDelete}>
+                                    <button id={article._id} className="btn deleteBtn btn-danger" onClick={this.handleArticleDelete}>
                                         Delete Article
                                     </button>
                                 </ListItem>

@@ -11,8 +11,6 @@ export default {
 
     //Called from Home.js when user click save article
     saveArticle: (data) => {
-
-        console.log("saving", data.headline.main);
         const articleData = {
             headline: data.headline.main,
             pub_date: data.pub_date,
