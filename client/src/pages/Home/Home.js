@@ -101,7 +101,7 @@ class Home extends Component {
                         <List>
                             {this.state.savedArticles.map(article => (
                                 <ListItem   key={article._id}
-                                            headline={article.headline.main}
+                                            headline={article.headline}
                                             pub_date={article.pub_date} 
                                             snippet={article.snippet} 
                                             url={article.web_url} 
