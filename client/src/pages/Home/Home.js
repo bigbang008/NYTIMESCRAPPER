@@ -4,9 +4,9 @@ import Jumbotron from "../../components/Jumbotron";
 import SearchForm from "../../components/SearchForm";
 import List from "../../components/List";
 import ListItem from "../../components/ListItem";
-// import Button from "../../components/Button";
 import API from "../../utils/API";
 import Messages from "../../components/Messages";
+import Messages2 from "../../components/Messages2";
 import "./Home.css";
 class Home extends Component {
     //default values
@@ -48,7 +48,7 @@ class Home extends Component {
             if (res.data.status === "error") {
                 throw new Error(res.data.message);
             };
-            this.setState({ results: res.data.response.docs.slice(0,10), error: "" }); //Saves first 5 search results into state as an array of objects
+            this.setState({ results: res.data.response.docs.slice(0,10), error: "" }); // 10 results
         }).catch(err => this.setState({ error: err.message }))
     };
 
@@ -60,10 +60,11 @@ class Home extends Component {
 
         API.saveArticle(clickedArticle).then(res => {
             this.getSaved(); 
-            // this.savedTop.scrollIntoView({ behavior: "smooth", block: "center"}); //Scolls down to the savedTop reference in the Saved panel
+            this.savedTop.scrollIntoView({ behavior: "smooth", block: "center"}); //Scolls down to the savedTop reference in the Saved panel
 
         })
     };
+                
 
     //Called when user clicks Delete button
     handleArticleDelete = (event) => {
@@ -84,6 +85,7 @@ class Home extends Component {
                     <SearchForm handleInputChange={this.handleInputChange}
                                 handleFormSubmit={this.handleFormSubmit}/>
                 </div>
+                {/* results */}
                 <div className="wrapper">
                     {this.state.results.length ? (
                         <List>
@@ -95,42 +97,32 @@ class Home extends Component {
                                             url={result.web_url} 
                                 >    
                                     <button id={result._id} className="btn saveBtn btn-success" onClick={this.handleArticleSave}>
-                                                Save Article
+                                        Save Article
                                     </button>
                                 </ListItem>
                                 ))}
                         </List>
                     ) : <Messages />}
                 </div>
-                {/* 
-
-            
-                    <Panel heading="Saved Articles">
-                    <div style={{ float:"left", clear: "both" }}
-                        ref={(el) => { this.savedTop = el; }}>
-                    </div>
-                        {this.state.savedArticles.length ? (
-                            <List>
-                                {this.state.savedArticles.slice(0).reverse().map(article => ( //For each article in the savedArticles array, create a list item (reverse order) with a div w/ article info, and a delete button with article ID
-                                    <ListItem key={article._id}>
-                                       <ListDiv headline={article.headline} byline={article.byline} pub_date={article.pub_date} snippet={article.snippet} url={article.url} />
-                                        <ButtonGroup>
-                                        <Button className="btn viewArticle" value ={article.web_url} onClick={this.viewArticle}>
-                                            View Article
-                                            </ Button>
-                                        <Button id={article._id} className="btn deleteBtn" onClick={this.handleArticleDelete}>
-                                                Delete Article
-                                        </ Button>
-                                        </ ButtonGroup>
-
-                                    </ListItem>
-                                ))}
-                            </List>
-                        ) : <MessageDiv message="Save an article from the search results above and view the list of saved articles here." />}
-                    </Panel>
-                    <Footer> <a href="https://Lisa Vinson.com">Lisa Vinson.com </a></Footer>
-                </Container> */}
-                
+                {/* saved articles */}
+                <div className="wrapper">
+                    {this.state.savedArticles.length ? (
+                        <List>
+                            {this.state.savedArticles.slice(0).reverse().map(article => ( //For each article in the savedArticles array, create a list item (reverse order) with a div w/ article info, and a delete button with article ID
+                                <ListItem   key={article._id}
+                                            headline={article.headline.main}
+                                            pub_date={article.pub_date} 
+                                            snippet={article.snippet} 
+                                            url={article.web_url} 
+                                > 
+                                    <button id={article._id} className="btn deleteBtn" onClick={this.handleArticleDelete}>
+                                        Delete Article
+                                    </button>
+                                </ListItem>
+                            ))}  
+                        </List> 
+                    ) : <Messages2 />}
+                </div>
             </div>
         )
     }

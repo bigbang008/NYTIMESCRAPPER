@@ -16,8 +16,8 @@ export default {
         const articleData = {
             headline: data.headline.main,
             pub_date: data.pub_date,
-            url: data.web_url,
-            nyt_id: data._id
+            snippet: data.snippet,
+            url: data.web_url
         };
         return (axios.post("/api/article", articleData));
     },
@@ -26,7 +26,6 @@ export default {
     getSavedArticles: () => {
         console.log("Inside API.getSavedArticles");
         return (axios.get("/api/articles"));
-
     },
     
     //Called from Home.js when user click delete article

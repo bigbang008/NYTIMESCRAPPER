@@ -9,8 +9,8 @@ module.exports = {
     },
 
     create: (req, res) => {
-        db.Article.create({
-                nyt_id: req.body.nyt_id,
+        db.Article
+            .create({
                 headline: req.body.headline,
                 pub_date: req.body.pub_date,
                 url: req.body.url,

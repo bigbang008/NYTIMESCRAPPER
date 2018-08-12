@@ -13,7 +13,7 @@ const ListItem = props => (
       Snippet: {props.snippet}
     </p>
     <div className="btn-group">
-        <a href={props.url} class="btn btn-info" target="_blank" role="button" aria-pressed="true">View Article</a>
+        <a href={props.url} className="btn btn-info" target="_blank" role="button" aria-pressed="true">View Article</a>
         {props.children}
     </div>
 

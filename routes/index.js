@@ -5,7 +5,6 @@
 
 	// router.use("/auth",require("./authRoutes.js")(passport));
 	router.use("/api",require("./apiRoutes.js"));
-	//add more routes here
 	
 
 	// If no API routes are hit, send the React app
